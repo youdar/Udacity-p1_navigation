@@ -2,22 +2,12 @@
 
 ### Tested strategies
 Building the navigation project I was considering:
-1. Implementing simple Deep Q-Network (DQN) like the one from the Udacity class with 3 linear layers (see `model.py` QNetwork) 
+1. Implementing simple Deep Q-Network (DQN) like the one from the Udacity class with 3 linear layers   
+   (see QNetwork in `model.py`) 
 2. Trying to change number and size of layers
 3. Adding dropout layers, and experimenting with layer sizes as well as dropout percentage.   
 
-### Strategies comments
-To figure out if we should get different kind of layers and perhaps different network architecture I thought it would     
-be beneficial to understand better the state data, even though we want the RL to learn without knowing anything on the state.   
-I think that this knowledge may help with hyper parameter tuning and create Neural Net that learn faster and may achieve better model.  
-
-State data:   
-According to some comments in the course message more detail info on the states can be found in [Unity GitHub](https://github.com/Unity-Technologies/ml-agents/issues/1134)  
-From those comments it appears that 2 of the 37 states are for velocities, 7 are angles of rays and   
-5 are states [Banana {0,1}, Wall {0,1}, BadBanana {0,1}, Agent {0,1}, Distance {fraction of the ray length}]  
-- example: [0, 1, 1, 0, 0.2]   
-           There is a BadBanana detected 20% of the way along the ray and a wall behind it.  
-           
+### Strategy comments
 I considered trying:  
 - dropout  
 - double DQN   
@@ -27,8 +17,20 @@ I considered trying:
 I thought that prioritized experience replay might not be as relevant in this problem since there is no obvious   
 issue with not enough occurrences of the behaviour we want to promote.  
 In the time I allowed myself to spend on this project, I wanted to test only one other option, so I chose the   
-dropout method.
+dropout method.   
 
+
+To figure out what different layers or different network architecture we should try, I thought it would be beneficial   
+to understand better the state data, even though we want the RL to learn without knowing anything on the state.   
+I think that this knowledge may in general help with hyper-parameter tuning and create Neural Net that   
+learn faster and may achieve better model.  
+
+State data:   
+According to some comments in the course message more detail info on the states can be found in [Unity GitHub](https://github.com/Unity-Technologies/ml-agents/issues/1134)  
+From those comments it appears that 2 of the 37 states are for velocities, 7 are angles of rays and   
+5 are states [Banana {0,1}, Wall {0,1}, BadBanana {0,1}, Agent {0,1}, Distance {fraction of the ray length}]  
+- example: [0, 1, 1, 0, 0.2], There is a BadBanana detected 20% of the way along the ray and a wall behind it.  
+           
 
 #### Ideas for Future Work
 - Write a code that allows somewhat automated exploration of hyper-parameters   

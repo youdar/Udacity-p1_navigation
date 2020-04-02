@@ -29,9 +29,10 @@ The project was developed on Mac OSX, no other OS setup was tested
 - need to have python 3 on your machine 
   (In the instruction below I will assume python 3.6, please change according to your version)
 
-##### Installation:
+#### Installation:
 
 For Mac OSX
+(did not check on other OS)
 
 1. Code location: [Udacity-p1_navigation](https://github.com/youdar/Udacity-p1_navigation)   
 2. Open the link above and click on [Clone or Download] -> [Download zip]   
@@ -53,13 +54,14 @@ For Mac OSX
    - Continue to run the code and **when all is done**:   
      to deactivate virtual environment, in the terminal `deactivate`  
 
-##### Running the code:
+#### Running the code:
 
 With your favorite code editor update   
 `LOCAL_PATH` in the files `Navigation.ipynb` and `Navigation_tools.py` with the correct path of your local
 
+**Using Pycharm IDE**
 If you want to use a tool like pycharm, open `Navigation_tools.py`, which gives you great way to stop in mid process  
-and see the values of different variable, go to the bottom of the code   
+and see the values of different variable, go to the bottom of the code and comment/uncomment the section you want to run      
 ```
 if __name__ == '__main__':
     o = BananaGame()
@@ -70,8 +72,8 @@ if __name__ == '__main__':
     scores = o.trained_model(100, model_num=2)
     # o.plot_scores(scores)
 ```   
-and comment / uncomment the section you want to run or explore   
-
+  
+**Using Jupyter notebook**
 If you want tot use the Jupyter notebook, in the command line (the environment we started earlier)   
 type `jupyter notebook`  the notebook will open, click on the folders and go to your unzipped_path   
 open `Navigation.ipynb` and run    
