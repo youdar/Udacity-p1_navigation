@@ -76,7 +76,7 @@ I stopped training when the 100 episodes average got to be > 15.5, so it is expe
 The model without the dropout got to a little better results when using it on 100 games (episodes)  
 The model with the dropout appeared appeared to be learning faster.   
 
-Result model average score over 100 episodes was **16.95** (see plot below)   
+Result model average score over 100 episodes was **16.95** with median **17** (see plot below)   
 
 #### Model used
 Selected model DQN with 3 layers    
