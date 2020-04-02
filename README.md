@@ -20,86 +20,65 @@ Given this information, the agent has to learn how to best select actions.  Four
 - **`2`** - turn left.
 - **`3`** - turn right.
 
-#### States info
-According to some comments in the course message more detail info on the states can be found in [Unity GitHub](https://github.com/Unity-Technologies/ml-agents/issues/1134)  
-From those comments it appears that 2 of the 37 states are for velocities, 7 are angles of rays and   
-5 are states [Banana {0,1}, Wall {0,1}, BadBanana {0,1}, Agent {0,1}, Distance {fraction of the ray length}]  
-example: 
-[0, 1, 1, 0, 0.2] 
-There is a BadBanana detected 20% of the way along the ray and a wall behind it.  
 
-While we want the RL to learn without knowing anything on the state, prior knowledge might be able 
-to help with hyper parameter tuning and create Neural Net that process better the data, 
+### Getting Started - Installation
 
-### Getting Started
+The project was developed on Mac OSX, no other OS setup was tested
 
-1. Download the environment from one of the links below.  You need only select the environment that matches your operating system:
-    - Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux.zip)
-    - Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana.app.zip)
-    - Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86.zip)
-    - Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Windows_x86_64.zip)
-    
-    (_For Windows users_) Check out [this link](https://support.microsoft.com/en-us/help/827218/how-to-determine-whether-a-computer-is-running-a-32-bit-version-or-64) if you need help with determining if your computer is running a 32-bit version or 64-bit version of the Windows operating system.
+#### Requirements:
+- need to have python 3 on your machine 
+  (In the instruction below I will assume python 3.6, please change according to your version)
 
-    (_For AWS_) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/Banana_Linux_NoVis.zip) to obtain the environment.
+##### Installation:
 
-2. Place the file in the DRLND GitHub repository, in the `p1_navigation/` folder, and unzip (or decompress) the file. 
+For Mac OSX
 
-### Project notes
-Initially put some of the code in `Navigation_tools.py` in order to keep `Navigation.ipynb` cleaner looking,
-but there were some `Broken pipe` issues with running the app this way, so I just copied to code into `Navigation.ipynb`
+1. Code location: [Udacity-p1_navigation](https://github.com/youdar/Udacity-p1_navigation)   
+2. Open the link above and click on [Clone or Download] -> [Download zip]   
+3. Unzip the downloaded file   
+4. If you have pycharm   
+   - open the folder with pycharm  
+   - in the [perferences] - [Project Interpreter] create a virtual environment   
+   - let pycharm install all packages in the `requirements.txt` file   
+4. open a terminal and type   
+   - `cd unzipped_path`   
+     Example: `cd /Users/youval.dar/Downloads/Udacity-p1_navigation-master` 
+   - `python3.6 -m venv /unzipped_path/venv`   
+     Example: `python3.6 -m venv /Users/youval.dar/Downloads/Udacity-p1_navigation-master/venv`   
+   - activate virtual environment:   
+     Example: `source /Users/youval.dar/Downloads/Udacity-p1_navigation-master/venv/bin/activate`  
+   - upgrade pip: `pip install pip --upgrade`   
+   - install project dependencies  
+     `pip install -r /Users/youval.dar/Downloads/Udacity-p1_navigation-master/requirements.txt`   
+   - Continue to run the code and **when all is done**:   
+     to deactivate virtual environment, in the terminal `deactivate`  
 
-The work includes:
-- In `Navigation.ipynb`
-  - Basic environment exploration 
-  - Average games scores info when playing multiple using uniformly random action selection 
-  - using the functions from `Navigation_tools.py`
-  - Train the model using DQN
-  - Train the model using DQN with dropout layer
-  - Run 100 episodes using the trained DQN model `checkpoint.pth`
-  - Run 100 episodes using the trained DQN dropout model `checkpoint_dropout.pth`
-- In `Navigation_tools.py`
-  - Code for training the model using basic DQN (same as the one in the DQN lesson) and with dropout layers
-  - I've created a model with additional hidden layer and layers sizes of 128, 64 and 32 
-    but it learned in a slower rate so I stopped it and did not keep the model so I did not include it in the code
+##### Running the code:
 
-Dropout layers:
-Adding dropout to model, training and saving to `checkpoint_dropout.pth`
-- Model `QNetwork2` in `model.py`
-- Goal was to see if we can train faster and if we can get better score.
-  - it got to 100 episodes score of 13.5 at episode 700
-  - There were oscillation when reached to average score of about 15.5, after episode 800 
-  - Did not improved significantly even after 1,500 episodes
+With your favorite code editor update   
+`LOCAL_PATH` in the files `Navigation.ipynb` and `Navigation_tools.py` with the correct path of your local
 
-Results   
-The model without the dropout, `checkpoint.pth`, got to a better final model, thought I did not let the one   
-with the dropout to run as long.   
-The model with the dropout appeared to learn faster, thought I did not do a serious exploration of testing learning   
-time over multiple. 
+If you want to use a tool like pycharm, open `Navigation_tools.py`, which gives you great way to stop in mid process  
+and see the values of different variable, go to the bottom of the code   
+```
+if __name__ == '__main__':
+    o = BananaGame()
+    # model_num=1 : DQN, model_num=2 : DQN with dropout (see model.py)
+    # o.uniform_random(3)
+    # scores = o.training_model(model_num=2)
+    # o.plot_scores(scores)
+    scores = o.trained_model(100, model_num=2)
+    # o.plot_scores(scores)
+```   
+and comment / uncomment the section you want to run or explore   
 
-(Images are a little misleading since they have a different y range)
+If you want tot use the Jupyter notebook, in the command line (the environment we started earlier)   
+type `jupyter notebook`  the notebook will open, click on the folders and go to your unzipped_path   
+open `Navigation.ipynb` and run    
+Note that unlike when running using pycharm, you might get sometimes `broken pipe` error when running 
+different learning or playing tasks one after the other. If that happens just restart the notebook using   
+the button on the top of the notebook.   
 
-__DQN__    
-Avg score: 16.95  
-Min score: 0.0  
-Max score: 24.0  
-Median score: 17.0  
-
-![DQN Trained model](DQN_image.png)
-
-
-__DQN With Dropout__    
-Avg score: 15.97   
-Min score: 8.0  
-Max score: 22.0  
-Median score: 16.0  
-
-![DQN with dropout Trained model](DQN_with_dropout.png)   
-
-I copied `checkpoint.pth` to `model.pt` as the project model weights, to work with `QNetwork`   
-which is `model_num=1`, the default model for this project.   
-
-  
 ### Project files
 - `Navigation_tools.py`: code containing functions used during to development
 - `Navigation.ipynb`: Summary code
@@ -109,33 +88,4 @@ which is `model_num=1`, the default model for this project.
 - `checkpoint_dropout.pth`: trained model settings for the model with dropout layers
 - `model.pt` is a copy of `checkpoint.pth`   
 - `README.md`: this file
-
-#### Things I did not do
-I did not do a lot of hyper-parameters tuning, not the gamma, epsilon, epsilon decay or 
-significant changes to the network structure (Time availability management)
-
-It looked like the gradient optimizer was having some issues around score 16, it was going up and down  
-as if the step size is not proper or that it got stack in some local minimum and was not able to get out, but  
-I did not investigate. 
-
-
-
-### (Optional) Challenge: Learning from Pixels
-
-After you have successfully completed the project, if you're looking for an additional challenge, you have come to the right place!  
-In the project, your agent learned from information such as its velocity, along with ray-based perception of objects around its forward direction.  
-A more challenging task would be to learn directly from pixels!
-
-To solve this harder task, you'll need to download a new Unity environment.  This environment is almost identical to the project environment,  
-where the only difference is that the state is an 84 x 84 RGB image, corresponding to the agent's first-person view.  
-(**Note**: Udacity students should not submit a project with this new environment.)
-
-You need only select the environment that matches your operating system:
-- Linux: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Linux.zip)
-- Mac OSX: [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana.app.zip)
-- Windows (32-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86.zip)
-- Windows (64-bit): [click here](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P1/Banana/VisualBanana_Windows_x86_64.zip)
-
-Then, place the file in the `p1_navigation/` folder in the DRLND GitHub repository, and unzip (or decompress) the file.  Next, open `Navigation_Pixels.ipynb` and follow the instructions to learn how to use the Python API to control the agent.
-
-(_For AWS_) If you'd like to train the agent on AWS, you must follow the instructions to [set up X Server](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the **Linux** operating system above.
+- `Report.md`: Info on the project

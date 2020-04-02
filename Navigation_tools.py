@@ -220,8 +220,9 @@ class BananaGame():
 
 if __name__ == '__main__':
     o = BananaGame()
+    # model_num=1 : DQN, model_num=2 : DQN with dropout (see model.py)
     # o.uniform_random(3)
     # scores = o.training_model(model_num=2)
     # o.plot_scores(scores)
-    scores = o.trained_model(10, model_num=2)
+    scores = o.trained_model(100, model_num=2)
     # o.plot_scores(scores)
