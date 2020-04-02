@@ -38,12 +38,17 @@ From those comments it appears that 2 of the 37 states are for velocities, 7 are
   - double DQN, dueling DQN, prioritized experience replay
   Do it in a way that compare over not to large number of episodes (something like 300)   
   that allows to get a sense on how fast and how well a particular approach is working
+  - Change gamma and epsilon allowing them model to have less/more "memory" and less/more exploration    
   
 - When running the learning process, it looked like the gradient optimizer was having some issues   
   around score 16, it was oscillating as if the step size is not proper, like it is overshooting or that it got   
   stack in some local minimum and was not able to get out.   
   Consider trying different gradient decent optimizers and see if we can get a sense on what are possible limits   
   of a perfect game, what scores we can hope to get if we have optimal model. 
+  
+- Let the leaning process run longer (I did not even get to 2000 episodes) and do not break the process when   
+  reaching to a particular 100 episodes score average.   
+  Instead, save `checkpoint.pth` whenever we get to a better 100 episodes score average.     
 
 
 ### Project work notes
