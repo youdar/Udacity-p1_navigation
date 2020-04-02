@@ -39,21 +39,20 @@ From those comments it appears that 2 of the 37 states are for velocities, 7 are
   Do it in a way that compare over not to large number of episodes (something like 300)   
   that allows to get a sense on how fast and how well a particular approach is working
   
-- When running ad learning process was going it looked like the gradient optimizer was having some issues   
-  around score 16, it was going up and down as if the step size is not proper or that it got stack in some 
-  local minimum and was not able to get out.
+- When running the learning process, it looked like the gradient optimizer was having some issues   
+  around score 16, it was oscillating as if the step size is not proper, like it is overshooting or that it got   
+  stack in some local minimum and was not able to get out.   
   Consider trying different gradient decent optimizers and see if we can get a sense on what are possible limits   
   of a perfect game, what scores we can hope to get if we have optimal model. 
 
 
-
 ### Project work notes
-Most of the project work and exploration was done using an IDE called pycharm that provide nice debugging tools   
-using `Navigation_tools.py`. 
-I copied and run some of the code in `Navigation.ipynb` since this can be simply used by anyone downloading  
+Most of the project work and exploration was done using an IDE named pycharm that provides nice debugging tools   
+using `Navigation_tools.py`.    
+I copied and run some of the code in `Navigation.ipynb` since this can be simpler to used by others when downloading   
 and trying this model. 
 
-Work notes:
+**Work notes and model exploration steps:**
 - Basic environment exploration: 
   print states, action, explore code, modify curse code  
 - Looking at average games scores info when playing multiple using uniformly random action selection   
@@ -73,28 +72,28 @@ Work notes:
   
 
 ### Results   
-I actually stopped the models when the 100 episodes average got to be > 15.50, so it is expected for models to give similar outcome.    
+I stopped training when the 100 episodes average got to be > 15.5, so it is expected for models to give similar outcome.    
 The model without the dropout got to a little better results when using it on 100 games (episodes)  
 The model with the dropout appeared appeared to be learning faster.   
 
-Average score over 100 episodes was 16.95 (see plot below)   
+Result model average score over 100 episodes was **16.95** (see plot below)   
 
 #### Model used
 Selected model DQN with 3 layers    
 Model:   
-fc1 = Linear(37, 64)
-fc2 = Linear(64, 64)
-fc3 = Linear(64, 4)
+fc1 = Linear(37, 64)  
+fc2 = Linear(64, 64)  
+fc3 = Linear(64, 4)   
 
 Forward step using Relu functions:   
-x = relu(fc1(state))
-x = relu(fc2(x))
-x = fc3(x)
+x = relu(fc1(state))   
+x = relu(fc2(x))   
+x = fc3(x)   
 
-`model.pt` contains project model weights copied from `checkpoint.pth`
+`model.pt` contains project model weights copied from `checkpoint.pth`   
 model name in `model.py` is `QNetwork` which is `model_num=1`.   
 
-#### Results plots and stats
+#### Results stats and plots 
 
 __DQN__    
 Avg score: 16.95  
