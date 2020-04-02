@@ -1,4 +1,5 @@
-tensorflow==1.7.1
+# tensorflow==1.7.1   # this version have security issues, it is the version set by the Udacity project but I upgraded it
+tensorflow
 Pillow>=4.2.1
 matplotlib
 numpy>=1.11.0
